@@ -1,11 +1,13 @@
-
 import CardList from "./components/CardList";
-
+import Title from "./components/Title";
 
 function App() {
   return (
     <div>
-      <CardList />
+      <div className="w-[80%] mx-auto">
+        <Title />
+        <CardList />
+      </div>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { NIFTY_LOGO_LINK } from "../links";
 
 const Title = () => {
   return (
-    <div className="flex md:w-[500px] md:ml-24 mt-24 gap-2">
+    <div className="flex md:w-[500px] md:ml-24 gap-2">
       <MdOutlineKeyboardArrowLeft className="font-semibold text-3xl cursor-pointer" />
       <div className="flex flex-col">
         <div className="flex gap-2">

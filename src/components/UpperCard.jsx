@@ -1,42 +1,36 @@
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import { POINTER_IMAGE_LINK } from "../links";
-import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
-import { noRepeat } from "../redux/timeSlice";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
 const Card = ({ title, bgImage, nature }) => {
-  const dispatch = useDispatch();
   const [pointerLocation, setPointerLocation] = useState(272);
-  const { currentTime, repeat } = useSelector((store) => store.time);
-  if (repeat) {
+  const { currentTime } = useSelector((store) => store.time);
+  useEffect(() => {
+    console.log("inside useEffect");
     switch (currentTime) {
       case "5min":
         setPointerLocation(250);
-        dispatch(noRepeat());
         break;
       case "10min":
         setPointerLocation(350);
-        dispatch(noRepeat());
         break;
       case "15min":
         setPointerLocation(100);
-        dispatch(noRepeat());
         break;
       case "30min":
         setPointerLocation(75);
-        dispatch(noRepeat());
         break;
       case "1hr":
         setPointerLocation(210);
-        dispatch(noRepeat());
         break;
       default:
-        setPointerLocation(172);
-        dispatch(noRepeat());
+        setPointerLocation(272);
         break;
     }
-  }
-  console.log(currentTime, pointerLocation, repeat);
+  }, [currentTime]);
+
+  console.log(currentTime, pointerLocation);
   return (
     <div className="p-3 flex flex-col gap-8 w-[500px] bg-white shadow-md sm:ml-5 mb-5 lg:mb-0">
       <div className="flex justify-between">
@@ -47,7 +41,7 @@ const Card = ({ title, bgImage, nature }) => {
         <img src={bgImage} className="w-80" alt="bgImage" />
         <img
           src={POINTER_IMAGE_LINK}
-          className={`w-4 absolute`}
+          className="w-4 absolute transition-all 2s ease-in-out"
           style={{ left: pointerLocation + "px" }}
           alt="pointer"
         />
